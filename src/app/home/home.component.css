@@ -1,18 +1,60 @@
-#colRight {
-   border-radius: 10px;
-   border: solid 1px #000000;
-   margin-left: 1%;
- }
-
-#colLeft {
-  border-radius: 10px;
-  border: solid 1px #000000;
-  margin-left: 1%;
-  padding-left: 21%;
+.spacer {
+  flex: 1 1 auto;
 }
 
-#code {
-  border-radius: 10px;
-  border: solid #000000;
-  margin: 1% 1% 1% 1%;
+.layout-internal {
+  margin-right: 0px;
+  flex: 1 1 25%;
+  box-sizing: border-box;
+  padding: 0px 10px 10px 0px;
+  max-width: 25%;
+}
+
+.layout-external {
+  height: 100%;
+  margin: 0px;
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+  place-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.layout {
+  cursor: pointer;
+  height: 100%;
+  margin: 0px -10px -10px 0px;
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.border-circle{
+  border-radius: 60%;
+  padding-left: 13px;
+  padding-top: 2px;
+  border: 2px solid #555;
+  width: 50px;
+}
+.padding {
+  padding-left: 10px;
+}
+
+.color{
+  border: solid coral;
+  height: 100px;
+  font-size: 60px;
+}
+.font-layout{
+  font-size: xx-large;
+}
+
+  .padding {
+  padding-left: 10px;
 }

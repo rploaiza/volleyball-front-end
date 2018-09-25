@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
+import { InputDialogComponent } from './home/input-dialog.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: HomeComponent.URL },
@@ -25,6 +26,6 @@ export class AppRoutingModule {
   ];
 
   static DIALOGS_COMPONENTS = [
-    // Declaracion de DIALOGOS
+    InputDialogComponent
   ];
 }

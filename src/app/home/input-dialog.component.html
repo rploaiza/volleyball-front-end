@@ -1,0 +1,12 @@
+<div mat-dialog-content id="position">
+  <h3 mat-dialog-title id="title">Bienvenido</h3>
+  <mat-form-field *ngFor="let team of data.teams; let i = index">
+    <label>
+      <input matInput [(ngModel)]="data.name[i]" placeholder={{team}}>
+    </label>
+  </mat-form-field>
+</div>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button [mat-dialog-close]="data.name" [disabled]="data.name[0] === '' || data.name[1] === ''" color="primary">Guardar</button>
+</mat-dialog-actions>

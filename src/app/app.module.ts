@@ -24,6 +24,7 @@ import {
   MatTabsModule, MatToolbarModule, MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
+import { TeamService } from './services/team.service';
 
 @NgModule({
   imports: [
@@ -78,7 +79,8 @@ import {
   entryComponents: [AppRoutingModule.DIALOGS_COMPONENTS],
   bootstrap: [AppComponent],
   providers: [
-    HttpService
+    HttpService,
+    TeamService
   ]
 
 })
