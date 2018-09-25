@@ -8,8 +8,6 @@ const appRoutes: Routes = [
   {
     path: HomeComponent.URL, component: HomeComponent,
     children: [
-      // Declaracion de RUTAS
-      // { path: TicketsComponent.URL, component: TicketsComponent }, <-- Ejemplo
     ]
   }
 ];
@@ -21,7 +19,6 @@ const appRoutes: Routes = [
 
 export class AppRoutingModule {
   static COMPONENTS = [
-    // Declaracion de COMPONENTES
     HomeComponent,
   ];
 

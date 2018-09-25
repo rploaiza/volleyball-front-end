@@ -4,8 +4,6 @@ import {MatDialog} from '@angular/material';
 import {TeamService} from '../services/team.service';
 import {TeamOutputDto} from './dtos/team-output-dto';
 import {Team} from '../models/team.model';
-import {TeamInputDto} from './dtos/team-input.dto';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +14,9 @@ import {Observable} from 'rxjs/Observable';
 export class HomeComponent implements OnInit {
 
   static URL = 'home';
-  teams: TeamInputDto[] = [];
+  sets: string[] = [];
+  teamName: string[] = [];
+  team: Team[] = [];
 
   constructor(public dialog: MatDialog, private teamService: TeamService) {
   }
@@ -26,7 +26,9 @@ export class HomeComponent implements OnInit {
   }
 
   newGame() {
-    this.teams = [];
+    this.team = [];
+    this.sets = [];
+    this.teamName = [];
     this.teamService.delete().subscribe();
     this.dialog.open(InputDialogComponent, {data: {name: [], teams: ['Primer equipo', 'Segundo equipo']}}).afterClosed().subscribe(
       result => {
@@ -35,29 +37,35 @@ export class HomeComponent implements OnInit {
             name: result
           };
           for (let i = 0; i < team.name.length; i++) {
-            this.teamService.create(new Team(team.name[i])).subscribe();
-          }
-          for (let i = 0; i <= team.name.length; i++) {
-            this.searchTeams().subscribe();
+            this.teamService.create(new Team(team.name[i])).subscribe(() =>
+              this.teamService.getAll().subscribe(units => {
+                this.teamName.push(units[i].name);
+                this.team.push(new Team(units[i].name, units[i].code, units[i].score));
+              }));
           }
         }
       }
     );
   }
 
-  searchTeams(): Observable<any> {
-    return new Observable(observer => {
-      this.teamService.getAll().subscribe(units => {
-        observer.next();
-        for (let i = 0; i < units.length; i++) {
-          this.teams.push(units[i]);
-        }
-        this.teams.splice(1, 1);
+  updateScore(team) {
+    const score = team.score + 1;
+    if (score !== 10) {
+      this.team = [];
+      this.teamService.update(new Team('', team.code, score)).subscribe(() => {
+        this.teamService.getAll().subscribe(units => {
+          for (let j = 0; j < units.length; j++) {
+            this.team.push(new Team(units[j].name, units[j].code, units[j].score));
+          }
+        });
       });
-    });
-  }
-
-  updateScore() {
-
+    } else {
+      this.sets.push(team.name);
+      for (let i = 0; i < this.team.length; i++) {
+        this.teamService.update(new Team('', team.code, 0)).subscribe( () =>
+          this.team[i].setScore(0)
+        );
+      }
+    }
   }
 }
