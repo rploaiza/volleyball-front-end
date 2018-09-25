@@ -1,16 +1,92 @@
-<h1>HomeComponent</h1>
-<div class="row" style="margin: auto">
-  <div class="col col-md-9" id="colRight">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Volleyball Ndeveloper</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="newGame()" id="teacher">
+      <mat-icon>group_add</mat-icon>
+      <span>Nueva Partida</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-    <br><br><br><br><br><br><br><br>
 
+<div id="separator-line" fxLayout="row" fxLayoutGap="20px">
+  <div fxFlex>
+    <mat-card class="units-card">
+      <mat-toolbar color="accent">
+        <mat-toolbar-row></mat-toolbar-row>
+      </mat-toolbar>
+    </mat-card>
+    <div fxflex="" fxlayout="" class="layout-ext">
+      <div class="grid" fxflex="20" fxlayoutalign="center center">
+        <mat-card>
+          <mat-card-title>Marcador</mat-card-title>
+          <div fxflexfill="" class="grid-one">
+            <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
+              <div fxflex="25" class="layout-internal">
+                <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
+                </div>
+              </div>
+              <div fxflex="25" class="layout-internal" *ngFor="let teams of team">
+                <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                  {{teams.getName()}}:
+                  <div class="layout-internal color">{{teams.getScore()}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="grid-two" fxflex="80" fxlayoutalign="center center">
+        <mat-card style="max-height: 93%;">
+          <mat-list-item>Set Ganador</mat-list-item>
+          <ul *ngFor="let set of sets">
+            <li>{{set}}</li>
+          </ul>
+        </mat-card>
+      </div>
+    </div>
+    <mat-card>
+      <mat-card-title>Servicio</mat-card-title>
+      <div fxflex="" fxlayout="" class="layout-ext">
+        <div fxflexfill="" class="grid-one">
+          <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
+            <div fxflex="25" class="layout-internal">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
+              </div>
+            </div>
+            <div fxflex="25" class="layout-internal" *ngFor="let name of teamName">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                <mat-radio-button class="border-circle"></mat-radio-button>
+                <h3 class="padding">: {{name}}</h3>
+              </div>
+              <div class="layout-internal">
+                <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card>
+      <div fxflex="" fxlayout="" class="layout-ext">
+        <div fxflexfill="" class="grid-one">
+          <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
+            <div fxflex="25" class="layout-internal">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
+              </div>
+            </div>
+            <div fxflex="25" class="layout-internal" *ngFor="let teams of team">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                <button mat-raised-button (click)="updateScore(teams)">Punto {{teams.getName()}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
   </div>
-  <div class="col-6 col-md-2" id="colLeft">
-
-    <br><br><br><br><br><br><br><br><br>
-
-  </div>
-  <input class="form-control" type="text" id="code" placeholder="code..">
 </div>
 
 <router-outlet></router-outlet>

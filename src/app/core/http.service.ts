@@ -14,13 +14,15 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class HttpService {
 
-    static API_END_POINT = 'http://localhost:8080/api/v0';
+    static API_END_POINT = 'https://developvolleyball.herokuapp.com';
 
     private params: URLSearchParams;
 
     private headers: Headers;
 
     private responseType: ResponseContentType;
+
+    private successfulNotification = undefined;
 
     constructor(private http: Http, private snackBar: MatSnackBar, private router: Router) {
         this.resetOptions();
@@ -40,6 +42,11 @@ export class HttpService {
     header(key: string, value: string): HttpService {
         this.headers.append(key, value);
         return this;
+    }
+
+    successful(notification = 'Realizado correctamente'): HttpService {
+      this.successfulNotification = notification;
+      return this;
     }
 
     get(endpoint: string): Observable<any> {
