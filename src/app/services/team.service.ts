@@ -28,8 +28,4 @@ export class TeamService {
   update(team: Team): Observable<any> {
     return this.httpService.successful().put(TeamService.END_POINT + '/' + team.getCode(), team);
   }
-
-  getByCode(code: string): Observable<TeamInputDto[]> {
-    return this.httpService.get(TeamService.END_POINT + '/' + code);
-  }
 }

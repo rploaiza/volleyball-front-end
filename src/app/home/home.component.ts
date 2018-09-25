@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material';
 import {TeamService} from '../services/team.service';
 import {TeamOutputDto} from './dtos/team-output-dto';
 import {Team} from '../models/team.model';
+import {TeamInputDto} from './dtos/team-input.dto';
 
 @Component({
   selector: 'app-home',
@@ -38,9 +39,9 @@ export class HomeComponent implements OnInit {
           };
           for (let i = 0; i < team.name.length; i++) {
             this.teamService.create(new Team(team.name[i])).subscribe(() =>
-              this.teamService.getAll().subscribe(units => {
-                this.teamName.push(units[i].name);
-                this.team.push(new Team(units[i].name, units[i].code, units[i].score));
+              this.teamService.getAll().subscribe(teams => {
+                this.teamName.push(teams[i].name);
+                this.team.push(new Team(teams[i].name, teams[i].code, teams[i].score));
               }));
           }
         }
@@ -48,14 +49,14 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  updateScore(team) {
+  updateScore(team: TeamInputDto) {
     const score = team.score + 1;
-    if (score !== 10) {
+    if (score !== 25) {
       this.team = [];
       this.teamService.update(new Team('', team.code, score)).subscribe(() => {
-        this.teamService.getAll().subscribe(units => {
-          for (let j = 0; j < units.length; j++) {
-            this.team.push(new Team(units[j].name, units[j].code, units[j].score));
+        this.teamService.getAll().subscribe(teams => {
+          for (let j = 0; j < teams.length; j++) {
+            this.team.push(new Team(teams[j].name, teams[j].code, teams[j].score));
           }
         });
       });
