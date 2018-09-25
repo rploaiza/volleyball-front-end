@@ -27,10 +27,10 @@
                 <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
                 </div>
               </div>
-              <div fxflex="25" class="layout-internal" *ngFor="let te of team">
+              <div fxflex="25" class="layout-internal" *ngFor="let teams of team">
                 <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-                  {{te.getName()}}:
-                  <div class="layout-internal color">{{te.getScore()}}</div>
+                  {{teams.getName()}}:
+                  <div class="layout-internal color">{{teams.getScore()}}</div>
                 </div>
               </div>
             </div>
@@ -55,10 +55,10 @@
               <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
               </div>
             </div>
-            <div fxflex="25" class="layout-internal" *ngFor="let te of teamName">
+            <div fxflex="25" class="layout-internal" *ngFor="let name of teamName">
               <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
                 <mat-radio-button class="border-circle"></mat-radio-button>
-                <h3 class="padding">: {{te}}</h3>
+                <h3 class="padding">: {{name}}</h3>
               </div>
               <div class="layout-internal">
                 <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
@@ -77,9 +77,9 @@
               <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
               </div>
             </div>
-            <div fxflex="25" class="layout-internal" *ngFor="let te of team">
+            <div fxflex="25" class="layout-internal" *ngFor="let teams of team">
               <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-                <button mat-raised-button (click)="updateScore(te)">Punto {{te.getName()}}</button>
+                <button mat-raised-button (click)="updateScore(teams)">Punto {{teams.getName()}}</button>
               </div>
             </div>
           </div>
