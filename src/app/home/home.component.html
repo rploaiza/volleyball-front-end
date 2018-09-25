@@ -17,75 +17,72 @@
         <mat-toolbar-row></mat-toolbar-row>
       </mat-toolbar>
     </mat-card>
-    <mat-card class="units-card">
-      <mat-card-title>Marcador</mat-card-title>
-      <div fxflexfill="" *ngFor="let team of teams" style="display: flex; padding-left: 25%">
-        <div class="layout-internal">
-          <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-            {{team.name}}:
+    <div fxflex="" fxlayout="" class="layout-ext">
+      <div class="grid" fxflex="20" fxlayoutalign="center center">
+        <mat-card>
+          <mat-card-title>Marcador</mat-card-title>
+          <div fxflexfill="" class="grid-one">
+            <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
+              <div fxflex="25" class="layout-internal">
+                <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
+                </div>
+              </div>
+              <div fxflex="25" class="layout-internal" *ngFor="let te of team">
+                <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                  {{te.getName()}}:
+                  <div class="layout-internal color">{{te.getScore()}}</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="layout-internal color">
-          <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
-            {{team.score}}
-          </div>
-        </div>
-
+        </mat-card>
       </div>
-    </mat-card>
-    <div class="layout-alignment"></div>
+      <div class="grid-two" fxflex="80" fxlayoutalign="center center">
+        <mat-card style="max-height: 93%;">
+          <mat-list-item>Set Ganador</mat-list-item>
+          <ul *ngFor="let set of sets">
+            <li>{{set}}</li>
+          </ul>
+        </mat-card>
+      </div>
+    </div>
     <mat-card>
       <mat-card-title>Servicio</mat-card-title>
-      <div fxflexfill="" class="layout-all">
-        <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
-          <div class="layout-internal" >
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+      <div fxflex="" fxlayout="" class="layout-ext">
+        <div fxflexfill="" class="grid-one">
+          <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
+            <div fxflex="25" class="layout-internal">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
+              </div>
+            </div>
+            <div fxflex="25" class="layout-internal" *ngFor="let te of teamName">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                <mat-radio-button class="border-circle"></mat-radio-button>
+                <h3 class="padding">: {{te}}</h3>
+              </div>
+              <div class="layout-internal">
+                <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                </div>
+              </div>
             </div>
           </div>
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-              <mat-radio-button class="border-circle"></mat-radio-button>
-              <h3 class="padding"> Colo Colo: </h3>
-            </div>
-          </div>
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-            </div>
-          </div>
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-              <mat-radio-button class="border-circle"></mat-radio-button>
-              <h3 class="padding"> Cobreloa: </h3>
-            </div>
-          </div>
-
         </div>
       </div>
     </mat-card>
-    <div class="layout-alignment"></div>
     <mat-card>
-
-      <div fxflexfill="" class="layout-all">
-        <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+      <div fxflex="" fxlayout="" class="layout-ext">
+        <div fxflexfill="" class="grid-one">
+          <div fxflexfill="" fxlayoutgap="10px grid" class="layout">
+            <div fxflex="25" class="layout-internal">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external">
+              </div>
+            </div>
+            <div fxflex="25" class="layout-internal" *ngFor="let te of team">
+              <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
+                <button mat-raised-button (click)="updateScore(te)">Punto {{te.getName()}}</button>
+              </div>
             </div>
           </div>
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-              <button mat-raised-button>Click me!</button>
-            </div>
-          </div>
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-            </div>
-          </div>
-          <div class="layout-internal">
-            <div fxflexfill="" fxlayoutalign="center center" class="layout-external font-layout">
-              <button mat-raised-button>Click me!</button>
-            </div>
-          </div>
-
         </div>
       </div>
     </mat-card>
